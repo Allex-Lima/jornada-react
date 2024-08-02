@@ -9,7 +9,7 @@ const posts = [
   {
     id: 1,
     author: {
-      vatarUrl: 'https://avatars.githubusercontent.com/u/73409541?v=4',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/73409541?v=4',
       name: 'Alex Lima',
       role: 'Desenvolvedor Frontend'
     },
@@ -21,9 +21,9 @@ const posts = [
     publishedAt: new Date('2024-08-02 16:00:00'),
   },
   {
-    id: 1,
+    id: 2,
     author: {
-      vatarUrl: 'https://avatars.githubusercontent.com/u/73409541?v=4',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/73409541?v=4',
       name: 'Júlia Lima',
       role: 'Desenvolvedora Frontend'
     },
@@ -32,7 +32,7 @@ const posts = [
       {type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portfólio. É um projeto que fiz no turn evento da Rocketseat. O nome do projeto é DotorCare.'},
       {type: 'link', content: 'jane.deseng/doctorcore'},
     ],
-    publishedAt: new Date('2024-08-02 16:00:00'),
+    publishedAt: new Date('2024-08-02 13:00:00'),
   }
 ]
 

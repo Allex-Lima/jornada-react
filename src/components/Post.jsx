@@ -1,31 +1,43 @@
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
 import styles from './Post.module.css'
 
-export function Post(props) {
-    console.log(props);
+export function Post({ author, publishedAt, content }) {
+
+    const publishedDateFormatted = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
+        locale: ptBR,
+    })
+
+    const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+        locale: ptBR,
+        addSuffix: true
+    })
+
     return (
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
-                    <Avatar hasBorder src="https://avatars.githubusercontent.com/u/73409541?v=4" />
+                    <Avatar hasBorder src={author.avatarUrl} />
                     <div className={styles.authorInfo}>
-                        <strong>Alexandro Lima</strong>
-                        <span>Web Developer</span>
+                        <strong>{author.name}</strong>
+                        <span>{author.role}</span>
                     </div>
                 </div>
-                <time title='23 de Julho às 06:25h' datetime="2024-07-23 06:25:00">Publicado há 1h</time>
+                <time title={publishedDateFormatted} datetime={publishedAt.toISOString()}>
+                    {publishedDateRelativeToNow}
+                </time>
             </header>
 
             <div className={styles.content}>
-                <p>Fala galera &#x1F590;</p>
-                <p>Acabei de subir mais um projeto no meu portfólio. É um projeto que fiz no turn evento da Rocketseat. O nome do projeto é DotorCare.</p>
-                <p>&#x1F449; <a href="">Alex.frontend/doctorcare</a></p>
-                <p>&#x1F449;{' '}
-                    <a href="">#novoprojeto </a>{' '}
-                    <a href="">#nlw</a>{' '}
-                    <a href="">#rocketseat</a>
-                </p>
+                {content.map((line) => {
+                    if (line.type === 'paragraph') {
+                        return <p>{line.content}</p>
+                    } else if (line.type === 'link') {
+                        return <p><a href="#">{line.content}</a></p>
+                    }
+                })}
             </div>
 
             <form className={styles.commentForm}>
